@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8">
+    <footer className="bg-primary text-primary-foreground py-10 sm:py-12">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div>
             <h3 className="font-display text-xl font-bold mb-3">
               CFPM <span className="text-secondary">Madagascar</span>

@@ -11,17 +11,17 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="contact" className="py-14 sm:py-20 lg:py-28 bg-muted">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-secondary">Contact</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-2">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
             Contactez-nous
           </h2>
           <div className="w-16 h-1 bg-secondary mx-auto mt-4 rounded-full" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Info */}
           <div>
             <h3 className="font-display text-2xl font-bold text-foreground mb-6">
@@ -62,7 +62,7 @@ const ContactSection = () => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="bg-card rounded-xl border border-border p-8 shadow-card">
+          <form onSubmit={handleSubmit} className="bg-card rounded-xl border border-border p-5 sm:p-8 shadow-card">
             <div className="grid sm:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Nom complet</label>

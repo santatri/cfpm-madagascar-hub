@@ -53,20 +53,20 @@ const centers = [
 
 const CentersSection = () => {
   return (
-    <section id="centres" className="py-20 lg:py-28 bg-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="centres" className="py-14 sm:py-20 lg:py-28 bg-muted">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-secondary">Nos Centres</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-2">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
             Centres annexes à travers Madagascar
           </h2>
           <div className="w-16 h-1 bg-secondary mx-auto mt-4 rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground mt-4 max-w-2xl mx-auto">
             Le CFPM dispose de plusieurs centres répartis dans les grandes villes de Madagascar pour vous offrir une formation de proximité.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {centers.map((center) => (
             <div
               key={center.name}
