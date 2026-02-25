@@ -1,4 +1,4 @@
-import logo from '../assets/hero-cfpm.jpg'; // Assurez-vous que le chemin est correct
+import logo  from "@/assets/hero-cfpm.jpg"; // Assurez-vous d'avoir un logo dans ce chemin ou ajustez-le en conséquence
 
 const Footer = () => {
   return (

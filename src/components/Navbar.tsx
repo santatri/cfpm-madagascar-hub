@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logo from '../assets/hero-cfpm.jpg'; // Assurez-vous que le chemin est correct
+import logo from "@/assets/hero-cfpm.jpg"; // Assurez-vous d'avoir un logo dans ce chemin ou ajustez-le en conséquence
 
 const navItems = [
   { label: "Accueil", href: "#accueil" },
