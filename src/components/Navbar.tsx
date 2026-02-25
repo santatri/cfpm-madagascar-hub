@@ -41,7 +41,7 @@ const Navbar = () => {
               />
             )}
             <span className="font-display text-xl font-bold text-primary">
-              CFPM <span className="text-secondary">de Madagascar FFFFFF</span>
+              CFPM <span className="text-secondary">de Madagascar</span>
             </span>
           </a>
 
