@@ -348,27 +348,30 @@ const ContactSection = () => {
         </div>
 
         {/* Carte Google Maps - VRAIE CARTE */}
-        {/* Lien vers Google Maps */}
-<div className="mt-12">
-  <div className="bg-card rounded-xl border border-border p-6 text-center">
-    <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2 justify-center">
-      <MapPin className="w-4 h-4 text-secondary" />
-      Notre emplacement (Siège)
-    </h4>
-    <a
-      href="https://www.google.com/maps/place/18%C2%B050'28.2%22S+47%C2%B027'48.6%22E/@-18.841165,47.463498,17z"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-6 py-3 bg-secondary/10 text-secondary rounded-lg hover:bg-secondary/20 transition-colors"
-    >
-      <MapPin className="w-5 h-5" />
-      Voir sur Google Maps
-    </a>
-    <p className="text-xs text-muted-foreground mt-3">
-      18°50'28.2"S 47°27'48.6"E - Imerinafovoany, Antananarivo
-    </p>
-  </div>
-</div>
+        <div className="mt-12">
+          <div className="bg-card rounded-xl border border-border p-6">
+            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-secondary" />
+              Notre emplacement (Siège)
+            </h4>
+            <div className="aspect-[21/9] w-full rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39658.24740489198!2d47.507249!3d-18.910292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07e00b4b1b1b1%3A0x8b8b8b8b8b8b8b8b!2sImerinafovoany%2C%20Antananarivo%2C%20Madagascar!5e0!3m2!1sfr!2sfr!4v1647888888888!5m2!1sfr!2sfr"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: "350px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Carte CFPM Imerinafovoany"
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-3 text-center">
+              Imerinafovoany, Antananarivo (Siège) - Cliquez sur la carte pour agrandir
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
