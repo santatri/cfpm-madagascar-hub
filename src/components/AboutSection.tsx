@@ -1,9 +1,12 @@
 import { Award, BookOpen, Target, TrendingUp, Users, MapPin, Clock, CheckCircle } from "lucide-react";
+import promo1 from "@/assets/1.jpg";
+import promo2 from "@/assets/2.jpg";
+import promo3 from "@/assets/4.jpg"; 
 
 const stats = [
-  { icon: BookOpen, value: "15+", label: "Formations professionnelles" },
-  { icon: Award, value: "10 000+", label: "Diplômés formés" },
-  { icon: Target, value: "95%", label: "Taux d'insertion" },
+  { icon: BookOpen, value: "15+", label: "Spécialités professionnelles" },
+  { icon: Award, value: "3 500+", label: "Diplômés formés" },
+  { icon: Target, value: "92%", label: "Taux d'insertion" },
   { icon: TrendingUp, value: "23+", label: "Années d'excellence" },
 ];
 
@@ -15,8 +18,8 @@ const features = [
   },
   {
     icon: MapPin,
-    title: "5 centres régionaux",
-    description: "Présents dans les principales villes de Madagascar"
+    title: "22 centres",
+    description: "Présents dans toutes les régions de Madagascar"
   },
   {
     icon: Clock,
@@ -43,9 +46,57 @@ const AboutSection = () => {
             </span>
           </div>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mt-2">
-            Qui sommes-nous ?
+            Qui <span className="text-secondary">sommes-nous</span> ?
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent mx-auto mt-4 rounded-full" />
+        </div>
+
+        {/* Grille d'images de promotion */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <img 
+              src={promo1} 
+              alt="Promotion CFPM - Groupe d'étudiants" 
+              className="w-full h-64 sm:h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+              <p className="text-xs sm:text-sm font-medium bg-secondary/80 inline-block px-3 py-1 rounded-full mb-2">
+                Promotion 2024
+              </p>
+              <h3 className="font-display text-lg sm:text-xl font-bold">Nos diplômés</h3>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <img 
+              src={promo2} 
+              alt="Promotion CFPM - Cérémonie de remise des diplômes" 
+              className="w-full h-64 sm:h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+              <p className="text-xs sm:text-sm font-medium bg-secondary/80 inline-block px-3 py-1 rounded-full mb-2">
+                Cérémonie
+              </p>
+              <h3 className="font-display text-lg sm:text-xl font-bold">Remise des diplômes</h3>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+            <img 
+              src={promo3} 
+              alt="Promotion CFPM - Étudiants en formation" 
+              className="w-full h-64 sm:h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+              <p className="text-xs sm:text-sm font-medium bg-secondary/80 inline-block px-3 py-1 rounded-full mb-2">
+                Formation
+              </p>
+              <h3 className="font-display text-lg sm:text-xl font-bold">En pleine session</h3>
+            </div>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">

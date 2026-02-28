@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { GraduationCap, Users, MapPin, Award, ChevronDown } from "lucide-react";
-import heroImage from "@/assets/h.jpg";
+import heroImage from "@/assets/h.png";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -59,18 +59,18 @@ const HeroSection = () => {
           Excellence, professionnalisme et insertion professionnelle garantie.
         </p>
 
-        {/* Statistiques */}
+        {/* Statistiques mises à jour */}
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-8 sm:mb-10">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">5000+</div>
+            <div className="text-2xl sm:text-3xl font-bold text-secondary">3 500+</div>
             <div className="text-xs sm:text-sm text-white/60">Étudiants formés</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">95%</div>
+            <div className="text-2xl sm:text-3xl font-bold text-secondary">92%</div>
             <div className="text-xs sm:text-sm text-white/60">Taux d'insertion</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">12</div>
+            <div className="text-2xl sm:text-3xl font-bold text-secondary">22</div>
             <div className="text-xs sm:text-sm text-white/60">Centres à Madagascar</div>
           </div>
         </div>
@@ -97,7 +97,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2 text-white/70 text-sm">
             <MapPin className="w-4 h-4 text-secondary flex-shrink-0" />
-            <span>5 centres à Madagascar</span>
+            <span>22 centres à Madagascar</span>
           </div>
           <div className="flex items-center gap-2 text-white/70 text-sm">
             <Award className="w-4 h-4 text-secondary flex-shrink-0" />

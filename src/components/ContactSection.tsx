@@ -15,17 +15,43 @@ const ContactSection = () => {
   const [formStatus, setFormStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // TES centres (basés sur les données que tu m'as envoyées)
   const centers = [
-    "Antananarivo - Analakely",
-    "Antananarivo - Ivato",
-    "Antananarivo - Anosy",
-    "Antananarivo - Andraharo",
-    "Toamasina",
-    "Mahajanga",
-    "Fianarantsoa",
-    "Antsirabe",
-    "Tuléar",
-    "Antsiranana (Diego)"
+    "CFPM IMERINAFOVOANY (Siège)",
+    "CFPM TALATAMATY",
+    "CFPM AMBOHIMANARINA",
+    "CFPM SABOTSY NAMEHANA",
+    "CFPM ANALAMAHINTSY",
+    "CFPM AMPASAPITO",
+    "CFPM AMBANIDIA",
+    "CFPM MAHAMASINA",
+    "CFPM ITAOSY",
+    "CFPM 67HA",
+    "CFPM TANJOMBATO",
+    "CFPM TOAMASINA",
+    "CFPM MAHAJANGA",
+    "CFPM FIANARANTSOA",
+    "CFPM TOLIARA",
+    "CFPM ANTSIRABE",
+    "CFPM AMBOSITRA",
+    "CFPM AMBATONDRAZAKA",
+    "CFPM SAMBAVA",
+    "CFPM ANTSIRANANA (DIEGO)"
+  ];
+
+  // Centres d'Antananarivo pour l'affichage
+  const antananarivoCenters = [
+    "CFPM IMERINAFOVOANY (Siège)",
+    "CFPM TALATAMATY",
+    "CFPM AMBOHIMANARINA",
+    "CFPM SABOTSY NAMEHANA",
+    "CFPM ANALAMAHINTSY",
+    "CFPM AMPASAPITO",
+    "CFPM AMBANIDIA",
+    "CFPM MAHAMASINA",
+    "CFPM ITAOSY",
+    "CFPM 67HA",
+    "CFPM TANJOMBATO"
   ];
 
   const handleSubmit = async (e) => {
@@ -97,8 +123,12 @@ const ContactSection = () => {
                   <div>
                     <div className="font-semibold text-foreground text-sm">Centres à Antananarivo</div>
                     <div className="text-muted-foreground text-sm leading-relaxed">
-                      Talatamaty, Imerinafovoany, Mahamasina, Analakely,<br />
-                      Ambohijanahary, 67HA Centre, Fiassy, Sabotsy Namehana<br />et Ampasapito
+                      Imerinafovoany (Siège), Talatamaty, Ambohimanarina,<br />
+                      Sabotsy Namehana, Analamahintsy, Ampasapito,<br />
+                      Ambanidia, Mahamasina, Itaosy, 67HA, Tanjombato
+                    </div>
+                    <div className="text-xs text-secondary mt-1 font-medium">
+                      11 centres dans la capitale
                     </div>
                   </div>
                 </div>
@@ -108,10 +138,10 @@ const ContactSection = () => {
                     <Phone className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground text-sm">Téléphone / MP</div>
+                    <div className="font-semibold text-foreground text-sm">Téléphone (Siège)</div>
                     <div className="text-muted-foreground text-sm">
-                      <a href="tel:+261346304930" className="hover:text-secondary transition-colors block">
-                        +261 34 63 049 30
+                      <a href="tel:+261387777705" className="hover:text-secondary transition-colors block">
+                        038 77 777 05
                       </a>
                     </div>
                   </div>
@@ -122,9 +152,9 @@ const ContactSection = () => {
                     <Mail className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground text-sm">Email</div>
-                    <a href="mailto:contact@cfpm-madagascar.mg" className="text-muted-foreground text-sm hover:text-secondary transition-colors">
-                      contact@cfpm-madagascar.mg
+                    <div className="font-semibold text-foreground text-sm">Email (Siège)</div>
+                    <a href="mailto:cfpmmada@metfp.gov.mg" className="text-muted-foreground text-sm hover:text-secondary transition-colors">
+                      cfpmmada@metfp.gov.mg
                     </a>
                   </div>
                 </div>
@@ -136,8 +166,8 @@ const ContactSection = () => {
                   <div>
                     <div className="font-semibold text-foreground text-sm">Horaires</div>
                     <div className="text-muted-foreground text-sm">
-                      Lun - Ven: 8h00 - 17h00<br />
-                      Sam: 8h00 - 12h00
+                      Lun - Ven: 7h30 - 16h30<br />
+                      Sam: 7h30 - 12h00
                     </div>
                   </div>
                 </div>
@@ -148,18 +178,18 @@ const ContactSection = () => {
             <div className="bg-card rounded-xl border border-border p-6 shadow-card">
               <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-secondary" />
-                Nos centres
+                Nos 20 centres
               </h4>
               <div className="grid grid-cols-2 gap-2">
-                {centers.slice(0, 6).map((center) => (
+                {antananarivoCenters.slice(0, 6).map((center) => (
                   <div key={center} className="text-xs text-muted-foreground hover:text-secondary transition-colors cursor-default">
-                    • {center}
+                    • {center.replace('CFPM ', '')}
                   </div>
                 ))}
               </div>
-              <button className="text-xs text-secondary hover:underline mt-3 inline-block">
-                Voir tous nos centres →
-              </button>
+              <div className="mt-3 text-xs text-secondary font-medium">
+                + 9 centres régionaux (Toamasina, Mahajanga, Fianarantsoa, Toliara, Antsirabe, Ambositra, Ambatondrazaka, Sambava, Diego)
+              </div>
             </div>
 
             {/* Réseaux sociaux */}
@@ -228,7 +258,7 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition"
-                    placeholder="+261 34 00 000 00"
+                    placeholder="038 77 777 05"
                   />
                 </div>
                 <div>
@@ -317,21 +347,28 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Carte Google Maps */}
-        <div className="mt-12">
-          <div className="bg-card rounded-xl border border-border p-6">
-            <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-secondary" />
-              Notre emplacement
-            </h4>
-            <div className="aspect-[21/9] bg-muted rounded-lg flex items-center justify-center text-muted-foreground">
-              <div className="text-center">
-                <MapPin className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                <p className="text-sm">Carte interactive - Talatamaty, Antananarivo</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Carte Google Maps - VRAIE CARTE */}
+        {/* Lien vers Google Maps */}
+<div className="mt-12">
+  <div className="bg-card rounded-xl border border-border p-6 text-center">
+    <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2 justify-center">
+      <MapPin className="w-4 h-4 text-secondary" />
+      Notre emplacement (Siège)
+    </h4>
+    <a
+      href="https://www.google.com/maps/place/18%C2%B050'28.2%22S+47%C2%B027'48.6%22E/@-18.841165,47.463498,17z"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-6 py-3 bg-secondary/10 text-secondary rounded-lg hover:bg-secondary/20 transition-colors"
+    >
+      <MapPin className="w-5 h-5" />
+      Voir sur Google Maps
+    </a>
+    <p className="text-xs text-muted-foreground mt-3">
+      18°50'28.2"S 47°27'48.6"E - Imerinafovoany, Antananarivo
+    </p>
+  </div>
+</div>
       </div>
     </section>
   );

@@ -58,12 +58,12 @@ const Navbar = () => {
             ))}
 
             {/* Bouton CTA */}
-            <a
+            {/* <a
               href="#contact"
               className="ml-4 px-5 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:bg-secondary/90 transition-colors shadow-md hover:shadow-lg"
             >
               Inscription
-            </a>
+            </a> */}
           </div>
 
           {/* Mobile toggle */}
@@ -94,13 +94,13 @@ const Navbar = () => {
               ))}
               
               {/* Bouton CTA mobile */}
-              <a
+              {/* <a
                 href="#contact"
                 onClick={() => setOpen(false)}
                 className="mt-4 mx-4 px-5 py-3 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:bg-secondary/90 transition-colors text-center"
               >
                 Inscription
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
