@@ -1,5 +1,7 @@
-import { Mail, Phone, MapPin, Send, Clock, Facebook, Linkedin, Youtube, Instagram, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, Facebook, MessageCircle, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
+
+const googleMapsUrl = "https://www.google.com/maps/place/CFPM/@-18.8413278,47.4611391,685m/data=!3m2!1e3!4b1!4m6!3m5!1s0x21f0812b388efd35:0x3912347c9e97615!8m2!3d-18.8413329!4d47.463714!16s%2Fg%2F11hyfynzwp?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,6 @@ const ContactSection = () => {
   const [formStatus, setFormStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // TES centres (basés sur les données que tu m'as envoyées)
   const centers = [
     "CFPM IMERINAFOVOANY (Siège)",
     "CFPM TALATAMATY",
@@ -36,7 +37,9 @@ const ContactSection = () => {
     "CFPM AMBOSITRA",
     "CFPM AMBATONDRAZAKA",
     "CFPM SAMBAVA",
-    "CFPM ANTSIRANANA (DIEGO)"
+    "CFPM ANTSIRANANA (DIEGO)",
+    "CFPM MORAMANGA",
+    "CFPM MORONDAVA"
   ];
 
   // Centres d'Antananarivo pour l'affichage
@@ -138,10 +141,13 @@ const ContactSection = () => {
                     <Phone className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground text-sm">Téléphone (Siège)</div>
-                    <div className="text-muted-foreground text-sm">
-                      <a href="tel:+261387777705" className="hover:text-secondary transition-colors block">
-                        038 77 777 05
+                    <div className="font-semibold text-foreground text-sm">Direction / renseignements</div>
+                    <div className="space-y-1 text-sm text-muted-foreground">
+                      <a href="tel:+261371777703" className="block transition-colors hover:text-primary">
+                        +261 37 17 777 03
+                      </a>
+                      <a href="tel:+261387777703" className="block transition-colors hover:text-primary">
+                        +261 38 77 777 03
                       </a>
                     </div>
                   </div>
@@ -152,9 +158,26 @@ const ContactSection = () => {
                     <Mail className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <div className="font-semibold text-foreground text-sm">Email (Siège)</div>
-                    <a href="mailto:cfpmmada@metfp.gov.mg" className="text-muted-foreground text-sm hover:text-secondary transition-colors">
-                      cfpmmada@metfp.gov.mg
+                    <div className="font-semibold text-foreground text-sm">Adresse e-mail officielle</div>
+                    <a href="mailto:cfpmdemadagascar7@gmail.com" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                      cfpmdemadagascar7@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 rounded-lg p-3 transition-colors hover:bg-primary/5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <MessageCircle className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-foreground">WhatsApp</div>
+                    <a
+                      href="https://wa.me/261346304930"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      +261 34 63 049 30
                     </a>
                   </div>
                 </div>
@@ -178,7 +201,7 @@ const ContactSection = () => {
             <div className="bg-card rounded-xl border border-border p-6 shadow-card">
               <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-secondary" />
-                Nos 20 centres
+                Nos {centers.length} centres
               </h4>
               <div className="grid grid-cols-2 gap-2">
                 {antananarivoCenters.slice(0, 6).map((center) => (
@@ -188,7 +211,7 @@ const ContactSection = () => {
                 ))}
               </div>
               <div className="mt-3 text-xs text-secondary font-medium">
-                + 9 centres régionaux (Toamasina, Mahajanga, Fianarantsoa, Toliara, Antsirabe, Ambositra, Ambatondrazaka, Sambava, Diego)
+                + {centers.length - antananarivoCenters.length} centres régionaux (Toamasina, Mahajanga, Fianarantsoa, Toliara, Antsirabe, Ambositra, Ambatondrazaka, Sambava, Diego, Moramanga, Morondava)
               </div>
             </div>
 
@@ -196,17 +219,11 @@ const ContactSection = () => {
             <div className="bg-card rounded-xl border border-border p-6 shadow-card">
               <h4 className="font-semibold text-foreground mb-4">Suivez-nous</h4>
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
+                <a href="https://www.facebook.com/CFPMFORMATION/?locale=fr_FR" target="_blank" rel="noreferrer" aria-label="Page Facebook officielle du CFPM" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
                   <Facebook className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
-                  <Instagram className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
-                  <Linkedin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
-                  <Youtube className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                <a href="https://wa.me/261346304930" target="_blank" rel="noreferrer" aria-label="Contacter le CFPM sur WhatsApp" className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors group">
+                  <MessageCircle className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
                 </a>
               </div>
             </div>
@@ -258,7 +275,7 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition"
-                    placeholder="038 77 777 05"
+                    placeholder="+261 34 63 049 30"
                   />
                 </div>
                 <div>
@@ -317,7 +334,6 @@ const ContactSection = () => {
                   />
                   <span className="text-xs text-muted-foreground">
                     J'accepte que mes données soient traitées pour répondre à ma demande.
-                    <a href="#" className="text-secondary hover:underline"> Politique de confidentialité</a>
                   </span>
                 </label>
               </div>
@@ -325,7 +341,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold py-3 rounded-lg transition-all hover:shadow-elevated disabled:opacity-50 disabled:cursor-not-allowed`}
+                className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 rounded-lg transition-all hover:shadow-elevated disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
@@ -347,29 +363,36 @@ const ContactSection = () => {
           </div>
         </div>
 
-        {/* Carte Google Maps - VRAIE CARTE */}
         <div className="mt-12">
           <div className="bg-card rounded-xl border border-border p-6">
             <h4 className="font-semibold text-foreground mb-4 flex items-center gap-2">
               <MapPin className="w-4 h-4 text-secondary" />
-              Notre emplacement (Siège)
+              Localisation du CFPM
             </h4>
             <div className="aspect-[21/9] w-full rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39658.24740489198!2d47.507249!3d-18.910292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07e00b4b1b1b1%3A0x8b8b8b8b8b8b8b8b!2sImerinafovoany%2C%20Antananarivo%2C%20Madagascar!5e0!3m2!1sfr!2sfr!4v1647888888888!5m2!1sfr!2sfr"
+                src="https://www.google.com/maps?q=-18.8413329,47.463714&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: "350px" }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Carte CFPM Imerinafovoany"
+                title="Carte du CFPM à Antananarivo"
                 className="w-full h-full"
               />
             </div>
-            <p className="text-xs text-muted-foreground mt-3 text-center">
-              Imerinafovoany, Antananarivo (Siège) - Cliquez sur la carte pour agrandir
-            </p>
+            <div className="mt-3 flex flex-col items-center justify-between gap-2 text-sm sm:flex-row">
+              <p className="text-muted-foreground">CFPM de Madagascar — Antananarivo</p>
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                Ouvrir dans Google Maps
+              </a>
+            </div>
           </div>
         </div>
       </div>

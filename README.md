@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+# CFPM de Madagascar
 
-## Project info
+Site web du Centre de Formation Professionnelle Moderne de Madagascar (CFPM). Il présente les formations, les centres, les coordonnées de contact et les informations institutionnelles de l’établissement.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Pages
 
-## How can I edit this code?
+- `/` — Accueil
+- `/a-propos` — À propos et reconnaissance institutionnelle
+- `/centres` — Réseau des centres et coordonnées
+- `/formations` — Catalogue des formations, tarifs et durées
+- `/contact` — Coordonnées, formulaire et localisation
 
-There are several ways of editing your application.
+## Technologies
 
-**Use Lovable**
+- React et TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- Radix UI et composants shadcn/ui
+- Lucide React
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Prérequis
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js
+- npm
 
-**Use your preferred IDE**
+## Installation et développement
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Vite affiche l’adresse locale du site dans le terminal.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Commandes disponibles
 
-**Use GitHub Codespaces**
+```bash
+npm run build    # Générer la version de production dans dist/
+npm run preview  # Prévisualiser le build de production
+npm run lint     # Vérifier le code avec ESLint
+npm test         # Exécuter les tests
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Coordonnées affichées sur le site
 
-## What technologies are used for this project?
+- **E-mail :** cfpmdemadagascar7@gmail.com
+- **Téléphone :** +261 37 17 777 03 ou +261 38 77 777 03
+- **WhatsApp :** +261 34 63 049 30
+- **Facebook :** [CFPM de Madagascar](https://www.facebook.com/CFPMFORMATION/?locale=fr_FR)
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Le site affiche également la reconnaissance du CFPM par le [Ministère de l’Enseignement Technique et de la Formation Professionnelle (METFP)](https://www.metfp.gov.mg/) et un lien vers l’[arrêté n° 28232/2019](https://www.metfp.gov.mg/uploads/textes/arrete-n28232-2019-menetp-698b1e30431f6172295353.pdf).

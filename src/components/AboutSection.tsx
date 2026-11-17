@@ -1,4 +1,4 @@
-import { Award, BookOpen, Target, TrendingUp, Users, MapPin, Clock, CheckCircle } from "lucide-react";
+import { Award, BookOpen, Target, TrendingUp, Users, MapPin, Clock, CheckCircle, Landmark } from "lucide-react";
 import promo1 from "@/assets/1.jpg";
 import promo2 from "@/assets/2.jpg";
 import promo3 from "@/assets/4.jpg"; 
@@ -177,37 +177,40 @@ const AboutSection = () => {
               ))}
             </div>
 
-            {/* Témoignage rapide */}
-            <div className="relative bg-secondary/5 rounded-xl p-6 border border-secondary/10">
-              <div className="absolute top-0 left-0 transform -translate-x-2 -translate-y-2 text-6xl text-secondary/20">
-                "
-              </div>
-              <p className="text-sm text-muted-foreground italic relative z-10">
-                "Le CFPM m'a permis d'acquérir des compétences concrètes et de trouver un emploi stable en seulement 3 mois après ma formation."
-              </p>
-              <div className="mt-3 flex items-center gap-2">
-                <div className="w-8 h-8 bg-secondary/20 rounded-full flex items-center justify-center">
-                  <span className="text-xs font-bold text-secondary">R</span>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-foreground">Rakotoarisoa Jean</p>
-                  <p className="text-xs text-muted-foreground">Diplômé 2024</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Bandeau de partenaires */}
-        <div className="mt-12 sm:mt-16 pt-8 border-t border-border">
-          <p className="text-center text-xs sm:text-sm text-muted-foreground mb-6">
-            Nos formations sont reconnues par
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-12 opacity-50">
-            <span className="text-lg font-semibold text-muted-foreground">Ministère de l'Éducation</span>
-            <span className="text-lg font-semibold text-muted-foreground">INFP</span>
-            <span className="text-lg font-semibold text-muted-foreground">ONFP</span>
-            <span className="text-lg font-semibold text-muted-foreground">FIF</span>
+        <div className="mt-12 rounded-xl border border-primary/15 bg-muted/60 p-5 sm:mt-16 sm:p-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <Landmark className="h-6 w-6" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
+                Reconnaissance institutionnelle
+              </p>
+              <p className="mt-1 text-base font-semibold leading-relaxed text-secondary sm:text-lg">
+                Le CFPM est reconnu par le Ministère de l’Enseignement Technique et de la Formation Professionnelle (METFP).
+              </p>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+                <a
+                  href="https://www.metfp.gov.mg/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary underline-offset-4 hover:underline"
+                >
+                  Site officiel du METFP
+                </a>
+                <a
+                  href="https://www.metfp.gov.mg/uploads/textes/arrete-n28232-2019-menetp-698b1e30431f6172295353.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary underline-offset-4 hover:underline"
+                >
+                  Arrêté n° 28232/2019
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

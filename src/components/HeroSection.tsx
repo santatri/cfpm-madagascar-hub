@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { GraduationCap, Users, MapPin, Award, ChevronDown } from "lucide-react";
 import heroImage from "@/assets/h.png";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +27,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover"
         />
         {/* Overlay dégradé plus sophistiqué */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#001A66]/90 via-[#001A66]/65 to-[#0044E5]/55" />
       </div>
 
       {/* Pattern de points pour texture (optionnel) */}
@@ -42,69 +43,69 @@ const HeroSection = () => {
         }`}>
         {/* Badge avec animation */}
         <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 animate-fade-in-up">
-          <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary" />
-          <span className="text-xs sm:text-sm font-medium text-secondary">
+          <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
+          <span className="text-xs sm:text-sm font-medium text-white">
             Centre de Formation Professionnelle Moderne
           </span>
         </div>
 
         {/* Titre principal */}
         <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 animate-fade-in-up leading-tight">
-          CFPM <span className="text-secondary">de Madagascar</span>
+          CFPM <span className="text-accent">de Madagascar</span>
         </h1>
 
         {/* Sous-titre */}
         <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-6 sm:mb-8 font-body leading-relaxed">
           Formez-vous aux métiers d'avenir dans nos centres répartis à travers tout Madagascar.
-          Excellence, professionnalisme et insertion professionnelle garantie.
+          Excellence et professionnalisme au service de votre avenir.
         </p>
 
         {/* Statistiques mises à jour */}
         <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-8 sm:mb-10">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">3 500+</div>
+            <div className="text-2xl sm:text-3xl font-bold text-accent">3 500+</div>
             <div className="text-xs sm:text-sm text-white/60">Étudiants formés</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">92%</div>
+            <div className="text-2xl sm:text-3xl font-bold text-accent">92%</div>
             <div className="text-xs sm:text-sm text-white/60">Taux d'insertion</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-secondary">22</div>
+            <div className="text-2xl sm:text-3xl font-bold text-accent">22</div>
             <div className="text-xs sm:text-sm text-white/60">Centres à Madagascar</div>
           </div>
         </div>
 
         {/* Boutons d'action */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-          <a
-            href="#formations"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-semibold px-8 py-3 rounded-lg transition-all hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base pointer-events-auto"
+          <Link
+            to="/formations"
+            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base pointer-events-auto"
           >
             <GraduationCap className="w-4 h-4 transition-transform group-hover:rotate-12" />
             Nos Formations
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="/contact"
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 font-semibold px-8 py-3 rounded-lg transition-all hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base pointer-events-auto"
           >
             <Users className="w-4 h-4 transition-transform group-hover:scale-110" />
             Nous Contacter
-          </a>
+          </Link>
         </div>
 
         {/* Features */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           <div className="flex items-center gap-2 text-white/70 text-sm">
-            <MapPin className="w-4 h-4 text-secondary flex-shrink-0" />
+            <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
             <span>22 centres à Madagascar</span>
           </div>
           <div className="flex items-center gap-2 text-white/70 text-sm">
-            <Award className="w-4 h-4 text-secondary flex-shrink-0" />
+            <Award className="w-4 h-4 text-accent flex-shrink-0" />
             <span>Diplômes reconnus par l'État</span>
           </div>
           <div className="flex items-center gap-2 text-white/70 text-sm">
-            <Users className="w-4 h-4 text-secondary flex-shrink-0" />
+            <Users className="w-4 h-4 text-accent flex-shrink-0" />
             <span>Formateurs expérimentés</span>
           </div>
         </div>

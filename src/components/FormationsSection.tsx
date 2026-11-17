@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { 
-  Clock, BookOpen, GraduationCap, Search, Filter, ChevronDown, 
-  Award, Users, Calendar, Laptop, Languages, Coffee, Music, 
-  Headphones, Scissors, Calculator 
+import {
+  ArrowUpRight, BookOpen, ChevronDown, Clock, Coffee, GraduationCap,
+  Headphones, Laptop, Languages, Music, Search, Scissors, Calculator, X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Formation {
   name: string;
@@ -21,7 +22,7 @@ interface Formation {
 
 interface Category {
   category: string;
-  icon: any;
+  icon: LucideIcon;
   courses: Formation[];
 }
 
@@ -115,18 +116,9 @@ const formations: Category[] = [
 const FormationsSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [expandedCourses, setExpandedCourses] = useState<Record<string, boolean>>({});
 
   const categories = [...new Set(formations.map(f => f.category))];
-
-  const toggleCategory = (category: string) => {
-    setExpandedCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(c => c !== category)
-        : [...prev, category]
-    );
-  };
 
   const toggleCourse = (courseName: string) => {
     setExpandedCourses(prev => ({
@@ -135,213 +127,242 @@ const FormationsSection = () => {
     }));
   };
 
-  const filteredFormations = formations.map(cat => ({
-    ...cat,
-    courses: cat.courses.filter(course => {
-      const matchesSearch = course.name.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesSearch;
-    })
-  })).filter(cat =>
-    selectedCategory === "all" || cat.category === selectedCategory
-  );
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+  const filteredFormations = formations
+    .map(cat => ({
+      ...cat,
+      courses: cat.courses.filter(course =>
+        `${course.name} ${course.note ?? ""}`.toLowerCase().includes(normalizedSearch)
+      ),
+    }))
+    .filter(cat =>
+      (selectedCategory === "all" || cat.category === selectedCategory) &&
+      cat.courses.length > 0
+    );
 
   const totalCourses = formations.reduce((acc, cat) => acc + cat.courses.length, 0);
+  const visibleCourses = filteredFormations.reduce((acc, cat) => acc + cat.courses.length, 0);
 
   const hasFormats = (course: Formation): course is Formation & { formats: NonNullable<Formation['formats']> } => {
     return !!course.formats;
   };
 
   return (
-    <section id="formations" className="py-14 sm:py-20 lg:py-28 bg-white">
+    <section id="formations" className="relative overflow-hidden bg-muted/60 py-16 sm:py-20 lg:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-sky/10 blur-3xl" />
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        {/* En-tête */}
-        <div className="text-center mb-10 sm:mb-16">
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-4">
-            <GraduationCap className="w-4 h-4 text-blue-600" />
-            <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-blue-600">
-              Notre Catalogue
-            </span>
+        <div className="mb-10 grid gap-8 lg:mb-12 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-3xl">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky/30 bg-white px-4 py-1.5 text-primary shadow-sm">
+              <GraduationCap className="h-4 w-4" />
+              <span className="text-xs font-bold uppercase tracking-[0.16em]">Le catalogue CFPM</span>
+            </div>
+            <h2 className="font-display text-3xl font-extrabold leading-tight text-secondary sm:text-4xl lg:text-5xl">
+              Apprenez un métier.
+              <span className="block text-primary">Construisez votre avenir.</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+              Explorez nos domaines de formation, comparez les durées et les tarifs, puis choisissez le parcours qui vous correspond.
+            </p>
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-2">
-            Formations <span className="text-blue-600">Professionnelles</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent mx-auto mt-4 rounded-full" />
-          <p className="text-sm sm:text-base text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
-            Découvrez nos <span className="font-semibold text-blue-600">7 domaines de formation</span> et plus de{" "}
-            <span className="font-semibold text-blue-600">30 spécialités</span> adaptées aux besoins du marché du travail.
-            Des programmes complets pour booster votre carrière.
-          </p>
-        </div>
-
-        {/* Statistiques rapides */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg p-4 text-center border border-gray-200 shadow-sm">
-            <BookOpen className="w-5 h-5 text-blue-600 mx-auto mb-2" />
-            <div className="text-xl font-bold text-gray-900">{totalCourses}</div>
-            <div className="text-xs text-gray-500">Formations</div>
-          </div>
-          <div className="bg-white rounded-lg p-4 text-center border border-gray-200 shadow-sm">
-            <Award className="w-5 h-5 text-blue-600 mx-auto mb-2" />
-            <div className="text-xl font-bold text-gray-900">92%</div>
-            <div className="text-xs text-gray-500">Réussite</div>
-          </div>
-          <div className="bg-white rounded-lg p-4 text-center border border-gray-200 shadow-sm">
-            <Calendar className="w-5 h-5 text-blue-600 mx-auto mb-2" />
-            <div className="text-xl font-bold text-gray-900">7</div>
-            <div className="text-xs text-gray-500">Domaines</div>
-          </div>
-          <div className="bg-white rounded-lg p-4 text-center border border-gray-200 shadow-sm">
-            <Users className="w-5 h-5 text-blue-600 mx-auto mb-2" />
-            <div className="text-xl font-bold text-gray-900">3 500+</div>
-            <div className="text-xs text-gray-500">Apprenants</div>
+          <div className="flex items-center gap-4 rounded-xl bg-gradient-to-br from-secondary to-primary p-5 text-white shadow-elevated sm:min-w-64">
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/15">
+              <BookOpen className="h-6 w-6 text-accent" />
+            </div>
+            <div>
+              <div className="text-2xl font-extrabold">{categories.length} domaines</div>
+              <div className="text-sm text-white/80">{totalCourses} formations à découvrir</div>
+            </div>
           </div>
         </div>
 
-        {/* Filtres et recherche */}
-        <div className="mb-8 space-y-4">
+        <div className="mb-8 rounded-xl border border-border bg-white p-4 shadow-card sm:p-5">
+          <label htmlFor="formation-search" className="sr-only">Rechercher une formation</label>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-primary" />
             <input
-              type="text"
-              placeholder="Rechercher une formation..."
+              id="formation-search"
+              type="search"
+              placeholder="Ex. anglais, bureautique, pâtisserie..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-gray-900"
+              className="w-full rounded-lg border border-border bg-muted/50 py-3 pl-12 pr-12 text-sm text-secondary outline-none transition placeholder:text-muted-foreground focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/15"
             />
+            {searchTerm && (
+              <button
+                type="button"
+                onClick={() => setSearchTerm("")}
+                aria-label="Effacer la recherche"
+                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition hover:bg-primary/5 hover:text-primary"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-gray-700"
+          <div className="mt-4 flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Filtrer par domaine">
+            <button
+              type="button"
+              onClick={() => setSelectedCategory("all")}
+              aria-pressed={selectedCategory === "all"}
+              className={`shrink-0 rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
+                selectedCategory === "all"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "bg-muted text-secondary hover:bg-primary/10"
+              }`}
             >
-              <option value="all">Tous les domaines</option>
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
+              Tous <span className="ml-1 opacity-75">{totalCourses}</span>
+            </button>
+            {formations.map((category) => {
+              const Icon = category.icon;
+              const isSelected = selectedCategory === category.category;
+              return (
+                <button
+                  key={category.category}
+                  type="button"
+                  onClick={() => setSelectedCategory(category.category)}
+                  aria-pressed={isSelected}
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+                    isSelected
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-muted text-secondary hover:bg-primary/10"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {category.category}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Grille des formations */}
-        <div className="grid md:grid-cols-2 gap-5 sm:gap-8">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <p className="text-sm font-semibold text-secondary">
+            {visibleCourses} {visibleCourses === 1 ? "formation affichée" : "formations affichées"}
+          </p>
+          {selectedCategory !== "all" && (
+            <button
+              type="button"
+              onClick={() => setSelectedCategory("all")}
+              className="text-sm font-semibold text-primary hover:text-secondary"
+            >
+              Voir tous les domaines
+            </button>
+          )}
+        </div>
+
+        <div className="grid gap-5 xl:grid-cols-2">
           {filteredFormations.map((category) => {
-            const IconComponent = category.icon;
+            const Icon = category.icon;
             return (
-              <div
+              <article
                 key={category.category}
-                className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all"
+                className="overflow-hidden rounded-xl border border-border bg-white shadow-card transition-shadow hover:shadow-elevated"
               >
-                {/* En-tête de catégorie */}
-                <button
-                  onClick={() => toggleCategory(category.category)}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex items-center justify-between hover:from-blue-700 hover:to-blue-800 transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <IconComponent className="w-6 h-6 text-white" />
-                    <h3 className="font-display text-lg font-bold text-white">
-                      {category.category}
-                    </h3>
-                    <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-full">
+                <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-secondary to-primary px-5 py-4 text-white sm:px-6">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/15">
+                      <Icon className="h-5 w-5 text-accent" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-base font-bold text-white sm:text-lg">{category.category}</h3>
+                      <p className="text-xs text-white/75">Parcours professionnels</p>
+                    </div>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-accent px-2.5 py-1 text-xs font-bold text-accent-foreground">
                       {category.courses.length}
-                    </span>
-                  </div>
-                  <ChevronDown className={`w-5 h-5 text-white transition-transform duration-300 ${expandedCategories.includes(category.category) ? 'rotate-180' : ''
-                    }`} />
-                </button>
+                  </span>
+                </div>
 
-                {/* Liste des cours */}
-                {(expandedCategories.includes(category.category) || searchTerm) && (
-                  <div className="divide-y divide-gray-100 animate-in slide-in-from-top-2">
-                    {category.courses.length > 0 ? (
-                      category.courses.map((course) => (
-                        <div key={course.name}>
-                          <button
-                            onClick={() => hasFormats(course) && toggleCourse(course.name)}
-                            className={`w-full px-4 sm:px-6 py-3 sm:py-4 hover:bg-gray-50 transition-colors text-left ${hasFormats(course) ? 'cursor-pointer' : ''}`}
-                          >
-                            <div className="flex items-start justify-between gap-2 sm:gap-4">
-                              <div className="flex-1 min-w-0">
-                                <div className="font-semibold text-gray-900 text-sm sm:text-base flex items-center gap-2">
-                                  {course.name}
-                                  {hasFormats(course) && (
-                                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${expandedCourses[course.name] ? 'rotate-180' : ''}`} />
-                                  )}
-                                </div>
-
-                                <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-gray-500">
-                                  {course.duration && (
-                                    <span className="flex items-center gap-1">
-                                      <Clock className="w-3 h-3" />
-                                      {course.duration}
-                                    </span>
-                                  )}
-                                  {/* Schedule masqué - ne s'affiche pas */}
-                                  {course.note && (
-                                    <span className="px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full text-[10px]">
-                                      {course.note}
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-
-                              {course.fee && (
-                                <div className="text-right shrink-0">
-                                  <div className="font-display font-bold text-blue-600 text-sm sm:text-base">
-                                    {course.fee}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </button>
-
-                          {/* Formats multiples (pour les langues) */}
-                          {hasFormats(course) && expandedCourses[course.name] && (
-                            <div className="bg-gray-50 px-4 sm:px-8 py-3 space-y-2 border-t border-gray-100">
-                              {course.formats.map((format, idx) => (
-                                <div key={idx} className="flex items-center justify-between text-xs">
-                                  <div className="flex items-center gap-2">
-                                    <span className="font-medium text-gray-700">{format.type}:</span>
-                                    <span className="text-gray-500">{format.duration}</span>
-                                    {/* Schedule des formats masqué */}
-                                  </div>
-                                  <span className="font-semibold text-blue-600">{format.fee}</span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
+                <div className="grid gap-3 bg-muted/40 p-3 sm:grid-cols-2 sm:p-4">
+                  {category.courses.map((course) => {
+                    const hasMultipleFormats = hasFormats(course);
+                    const isExpanded = Boolean(expandedCourses[course.name]);
+                    return (
+                      <article key={course.name} className="rounded-lg border border-border bg-white p-4 transition-colors hover:border-primary/30">
+                        <div className="flex items-start justify-between gap-3">
+                          <h4 className="font-semibold leading-snug text-secondary">{course.name}</h4>
+                          <span className="shrink-0 text-right text-xs font-bold leading-5 text-primary sm:text-sm">
+                            {course.fee ?? (hasMultipleFormats ? `${course.formats.length} formules` : "")}
+                          </span>
                         </div>
-                      ))
-                    ) : (
-                      <div className="px-6 py-8 text-center text-gray-500">
-                        Aucune formation ne correspond à votre recherche
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+
+                        <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
+                          <Clock className="h-3.5 w-3.5 shrink-0 text-sky" />
+                          <span>{course.duration ?? "Durées au choix"}</span>
+                        </div>
+
+                        {course.note && (
+                          <p className="mt-3 rounded-md bg-primary/5 px-2.5 py-2 text-xs leading-5 text-secondary/80">
+                            {course.note}
+                          </p>
+                        )}
+
+                        {hasMultipleFormats && (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => toggleCourse(course.name)}
+                              aria-expanded={isExpanded}
+                              className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-primary transition hover:text-secondary"
+                            >
+                              {isExpanded ? "Masquer les formules" : "Voir les formules"}
+                              <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                            </button>
+                            {isExpanded && (
+                              <div className="mt-3 space-y-2 border-t border-border pt-3">
+                                {course.formats.map((format) => (
+                                  <div key={format.type} className="flex items-start justify-between gap-3 text-xs">
+                                    <div>
+                                      <p className="font-semibold text-secondary">{format.type}</p>
+                                      <p className="mt-0.5 text-muted-foreground">{format.duration}</p>
+                                    </div>
+                                    <span className="shrink-0 font-bold text-primary">{format.fee}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </article>
+                    );
+                  })}
+                </div>
+                </article>
             );
           })}
         </div>
 
-        {/* Message si aucun résultat */}
-        {filteredFormations.every(cat => cat.courses.length === 0) && (
-          <div className="text-center py-12">
-            <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500">Aucune formation trouvée</p>
+        {filteredFormations.length === 0 && (
+          <div className="rounded-xl border border-border bg-white px-6 py-12 text-center shadow-sm">
+            <Search className="mx-auto mb-4 h-10 w-10 text-muted-foreground/50" />
+            <h3 className="font-semibold text-secondary">Aucune formation trouvée</h3>
+            <p className="mt-1 text-sm text-muted-foreground">Essayez un autre mot-clé ou choisissez un autre domaine.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchTerm("");
+                setSelectedCategory("all");
+              }}
+              className="mt-4 text-sm font-semibold text-primary hover:text-secondary"
+            >
+              Réinitialiser les filtres
+            </button>
           </div>
         )}
 
-        {/* Call to Action */}
-        <div className="mt-12 text-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-xl bg-gradient-to-br from-secondary to-primary p-6 text-center text-white shadow-elevated sm:flex-row sm:px-8 sm:text-left">
+          <div>
+            <h3 className="font-display text-lg font-bold sm:text-xl">Besoin d’aide pour choisir ?</h3>
+            <p className="mt-1 text-sm text-white/80">Notre équipe vous accompagne dans votre orientation.</p>
+          </div>
+          <Link
+            to="/contact"
+            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-secondary transition hover:bg-accent"
           >
-            <GraduationCap className="w-5 h-5" />
-            S'inscrire à une formation
-          </a>
+            Contacter le CFPM
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
