@@ -50,3 +50,7 @@ npm test         # Exécuter les tests
 - **Facebook :** [CFPM de Madagascar](https://www.facebook.com/CFPMFORMATION/?locale=fr_FR)
 
 Le site affiche également la reconnaissance du CFPM par le [Ministère de l’Enseignement Technique et de la Formation Professionnelle (METFP)](https://www.metfp.gov.mg/) et un lien vers l’[arrêté n° 28232/2019](https://www.metfp.gov.mg/uploads/textes/arrete-n28232-2019-menetp-698b1e30431f6172295353.pdf).
+
+## Indexation sur Google
+
+Après le déploiement sur `https://cfpm-de-madagascar.com/`, ajoutez et vérifiez le domaine dans [Google Search Console](https://search.google.com/search-console/), puis soumettez le sitemap : `https://cfpm-de-madagascar.com/sitemap.xml`. L’indexation et le classement sont décidés par Google et ne peuvent pas être garantis par le site.
