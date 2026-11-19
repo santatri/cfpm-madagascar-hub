@@ -1,4 +1,4 @@
-import { Clock, Facebook, Mail, MapPin, MessageCircle, Phone, ArrowUpRight } from "lucide-react";
+import { Clock, Facebook, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/hero-cfpm.jpg";
 
@@ -95,18 +95,11 @@ const Footer = () => (
         </div>
       </div>
 
-      {/* Barre inférieure */}
-      <div className="mt-10 pt-6 border-t border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Barre inférieure simplifiée */}
+      <div className="mt-10 pt-6 border-t border-border/50">
         <p className="text-[11px] text-muted-foreground/70">
           © {new Date().getFullYear()} CFPM de Madagascar. Tous droits réservés.
         </p>
-        <a
-          href="#accueil"
-          className="inline-flex items-center gap-1 text-[11px] text-muted-foreground/70 transition hover:text-primary"
-        >
-          Retour en haut
-          <ArrowUpRight className="h-3 w-3" />
-        </a>
       </div>
     </div>
   </footer>
