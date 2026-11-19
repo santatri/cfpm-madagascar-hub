@@ -1,99 +1,112 @@
-import { Clock, Facebook, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Facebook, Mail, MapPin, MessageCircle, Phone, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/hero-cfpm.jpg";
 
 const Footer = () => (
-  <footer className="bg-secondary py-10 text-secondary-foreground sm:py-12">
-    <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+  <footer className="bg-white border-t border-border/60">
+    <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-10 sm:py-12">
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Marque */}
         <div>
-          <Link to="/" className="mb-4 inline-flex items-center gap-3">
-            <img src={logo} alt="" className="h-11 w-11 rounded-lg object-cover" />
-            <span className="font-display text-lg font-bold">
-              CFPM <span className="text-accent">Madagascar</span>
+          <Link to="/" className="inline-flex items-center gap-2.5 mb-4">
+            <img src={logo} alt="" className="h-10 w-10 rounded-lg object-cover ring-1 ring-border/50" />
+            <span className="font-display text-sm font-bold text-secondary">
+              CFPM <span className="text-primary">Madagascar</span>
             </span>
           </Link>
-          <p className="max-w-xs text-sm leading-6 text-white/70">
-            Centre de Formation Professionnelle Moderne de Madagascar. Former pour l’avenir et construire l’excellence.
+          <p className="text-xs leading-relaxed text-muted-foreground max-w-xs">
+            Centre de Formation Professionnelle Moderne de Madagascar. Former pour l'avenir et construire l'excellence.
           </p>
-          <div className="mt-4 flex gap-3">
+          <div className="mt-4 flex gap-2">
             <a
               href="https://www.facebook.com/CFPMFORMATION/?locale=fr_FR"
               target="_blank"
               rel="noreferrer"
               aria-label="Page Facebook officielle du CFPM"
-              className="rounded-lg bg-white/10 p-2 text-white/80 transition hover:bg-white/20 hover:text-accent"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 text-muted-foreground transition hover:border-primary/30 hover:text-primary"
             >
-              <Facebook className="h-5 w-5" />
+              <Facebook className="h-3.5 w-3.5" />
             </a>
             <a
               href="https://wa.me/261346304930"
               target="_blank"
               rel="noreferrer"
               aria-label="Contacter le CFPM sur WhatsApp"
-              className="rounded-lg bg-white/10 p-2 text-white/80 transition hover:bg-white/20 hover:text-accent"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 text-muted-foreground transition hover:border-primary/30 hover:text-primary"
             >
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
 
+        {/* Navigation */}
         <div>
-          <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Navigation</h2>
-          <nav className="flex flex-col items-start gap-2 text-sm text-white/70" aria-label="Navigation de pied de page">
-            <Link to="/" className="transition hover:text-accent">Accueil</Link>
-            <Link to="/a-propos" className="transition hover:text-accent">À propos</Link>
-            <Link to="/centres" className="transition hover:text-accent">Centres</Link>
-            <Link to="/formations" className="transition hover:text-accent">Formations</Link>
-            <Link to="/contact" className="transition hover:text-accent">Contact</Link>
+          <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wider text-secondary/60">Navigation</h2>
+          <nav className="flex flex-col items-start gap-2 text-xs text-muted-foreground" aria-label="Navigation de pied de page">
+            <Link to="/" className="transition hover:text-primary">Accueil</Link>
+            <Link to="/a-propos" className="transition hover:text-primary">À propos</Link>
+            <Link to="/centres" className="transition hover:text-primary">Centres</Link>
+            <Link to="/formations" className="transition hover:text-primary">Formations</Link>
+            <Link to="/contact" className="transition hover:text-primary">Contact</Link>
           </nav>
         </div>
 
+        {/* Horaires */}
         <div>
-          <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Horaires</h2>
-          <div className="space-y-3 text-sm text-white/70">
+          <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wider text-secondary/60">Horaires</h2>
+          <div className="space-y-2.5 text-xs text-muted-foreground">
             <div className="flex items-start gap-2">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <span>Lundi – vendredi : 7h30 – 16h30</span>
+              <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
+              <span>Lun – Ven : 7h30 – 16h30</span>
             </div>
             <div className="flex items-start gap-2">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <span>Samedi : 7h30 – 12h00</span>
+              <Clock className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
+              <span>Sam : 7h30 – 12h00</span>
             </div>
-            <p>Dimanche : fermé</p>
+            <p className="text-muted-foreground/60 pl-5.5">Dimanche : fermé</p>
           </div>
         </div>
 
+        {/* Contact */}
         <div>
-          <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contact officiel</h2>
-          <div className="space-y-3 text-sm text-white/70">
-            <a href="tel:+261371777703" className="flex items-start gap-2 transition hover:text-white">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+          <h2 className="mb-3 text-[11px] font-bold uppercase tracking-wider text-secondary/60">Contact</h2>
+          <div className="space-y-2.5 text-xs text-muted-foreground">
+            <a href="tel:+261371777703" className="flex items-start gap-2 transition hover:text-primary">
+              <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
               <span>+261 37 17 777 03</span>
             </a>
-            <a href="tel:+261387777703" className="flex items-start gap-2 transition hover:text-white">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <a href="tel:+261387777703" className="flex items-start gap-2 transition hover:text-primary">
+              <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
               <span>+261 38 77 777 03</span>
             </a>
-            <a href="mailto:cfpmdemadagascar7@gmail.com" className="flex items-start gap-2 transition hover:text-white">
-              <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <a href="mailto:cfpmdemadagascar7@gmail.com" className="flex items-start gap-2 transition hover:text-primary">
+              <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
               <span className="break-all">cfpmdemadagascar7@gmail.com</span>
             </a>
-            <a href="https://wa.me/261346304930" target="_blank" rel="noreferrer" className="flex items-start gap-2 transition hover:text-white">
-              <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+            <a href="https://wa.me/261346304930" target="_blank" rel="noreferrer" className="flex items-start gap-2 transition hover:text-primary">
+              <MessageCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
               <span>WhatsApp : +261 34 63 049 30</span>
             </a>
             <div className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+              <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary/60" />
               <span>Imerinafovoany, Antananarivo (Siège)</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 border-t border-white/15 pt-5 text-xs text-white/55 sm:flex sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} CFPM de Madagascar. Tous droits réservés.</p>
-        <p className="mt-2 sm:mt-0">Formation professionnelle à Madagascar</p>
+      {/* Barre inférieure */}
+      <div className="mt-10 pt-6 border-t border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <p className="text-[11px] text-muted-foreground/70">
+          © {new Date().getFullYear()} CFPM de Madagascar. Tous droits réservés.
+        </p>
+        <a
+          href="#accueil"
+          className="inline-flex items-center gap-1 text-[11px] text-muted-foreground/70 transition hover:text-primary"
+        >
+          Retour en haut
+          <ArrowUpRight className="h-3 w-3" />
+        </a>
       </div>
     </div>
   </footer>

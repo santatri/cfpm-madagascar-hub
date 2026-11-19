@@ -148,70 +148,71 @@ const FormationsSection = () => {
   };
 
   return (
-    <section id="formations" className="relative overflow-hidden bg-muted/60 py-16 sm:py-20 lg:py-24">
-      <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-sky/10 blur-3xl" />
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="mb-10 grid gap-8 lg:mb-12 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky/30 bg-white px-4 py-1.5 text-primary shadow-sm">
-              <GraduationCap className="h-4 w-4" />
-              <span className="text-xs font-bold uppercase tracking-[0.16em]">Le catalogue CFPM</span>
-            </div>
-            <h2 className="font-display text-3xl font-extrabold leading-tight text-secondary sm:text-4xl lg:text-5xl">
-              Apprenez un métier.
-              <span className="block text-primary">Construisez votre avenir.</span>
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-              Explorez nos domaines de formation, comparez les durées et les tarifs, puis choisissez le parcours qui vous correspond.
-            </p>
+    <section id="formations" className="relative bg-muted/50 py-14 sm:py-20">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+        {/* En-tête compact */}
+        <div className="mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky/30 bg-white px-3 py-1 text-primary mb-3">
+            <GraduationCap className="h-3.5 w-3.5" />
+            <span className="text-[10px] font-bold uppercase tracking-wider">Le catalogue CFPM</span>
           </div>
-          <div className="flex items-center gap-4 rounded-xl bg-gradient-to-br from-secondary to-primary p-5 text-white shadow-elevated sm:min-w-64">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/15">
-              <BookOpen className="h-6 w-6 text-accent" />
-            </div>
-            <div>
-              <div className="text-2xl font-extrabold">{categories.length} domaines</div>
-              <div className="text-sm text-white/80">{totalCourses} formations à découvrir</div>
-            </div>
-          </div>
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-secondary leading-tight">
+            Apprenez un métier.{" "}
+            <span className="text-primary">Construisez votre avenir.</span>
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground max-w-xl">
+            Explorez nos domaines de formation, comparez les durées et les tarifs.
+          </p>
         </div>
 
-        <div className="mb-8 rounded-xl border border-border bg-white p-4 shadow-card sm:p-5">
+        {/* Barre stats + recherche */}
+        <div className="mb-6 rounded-xl border border-border bg-white p-4 sm:p-5">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm mb-4 pb-4 border-b border-border/60">
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+              <BookOpen className="h-4 w-4 text-primary" />
+              <strong className="text-secondary">{categories.length}</strong> domaines
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+              <GraduationCap className="h-4 w-4 text-primary" />
+              <strong className="text-secondary">{totalCourses}</strong> formations
+            </span>
+          </div>
+
           <label htmlFor="formation-search" className="sr-only">Rechercher une formation</label>
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-primary" />
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-primary" />
             <input
               id="formation-search"
               type="search"
               placeholder="Ex. anglais, bureautique, pâtisserie..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-lg border border-border bg-muted/50 py-3 pl-12 pr-12 text-sm text-secondary outline-none transition placeholder:text-muted-foreground focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/15"
+              className="w-full rounded-lg border border-border bg-muted/30 py-2.5 pl-10 pr-10 text-sm text-secondary outline-none transition placeholder:text-muted-foreground focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/15"
             />
             {searchTerm && (
               <button
                 type="button"
                 onClick={() => setSearchTerm("")}
                 aria-label="Effacer la recherche"
-                className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition hover:bg-primary/5 hover:text-primary"
+                className="absolute right-2.5 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition hover:bg-primary/5 hover:text-primary"
               >
-                <X className="h-4 w-4" />
+                <X className="h-3.5 w-3.5" />
               </button>
             )}
           </div>
 
-          <div className="mt-4 flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Filtrer par domaine">
+          <div className="mt-3 flex gap-1.5 overflow-x-auto pb-1" role="group" aria-label="Filtrer par domaine">
             <button
               type="button"
               onClick={() => setSelectedCategory("all")}
               aria-pressed={selectedCategory === "all"}
-              className={`shrink-0 rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
                 selectedCategory === "all"
                   ? "bg-primary text-primary-foreground shadow-sm"
                   : "bg-muted text-secondary hover:bg-primary/10"
               }`}
             >
-              Tous <span className="ml-1 opacity-75">{totalCourses}</span>
+              Tous <span className="ml-0.5 opacity-75">{totalCourses}</span>
             </button>
             {formations.map((category) => {
               const Icon = category.icon;
@@ -222,13 +223,13 @@ const FormationsSection = () => {
                   type="button"
                   onClick={() => setSelectedCategory(category.category)}
                   aria-pressed={isSelected}
-                  className={`inline-flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-colors ${
                     isSelected
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "bg-muted text-secondary hover:bg-primary/10"
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-3.5 w-3.5" />
                   {category.category}
                 </button>
               );
@@ -237,63 +238,62 @@ const FormationsSection = () => {
         </div>
 
         <div className="mb-4 flex items-center justify-between gap-3">
-          <p className="text-sm font-semibold text-secondary">
-            {visibleCourses} {visibleCourses === 1 ? "formation affichée" : "formations affichées"}
+          <p className="text-xs font-semibold text-secondary">
+            {visibleCourses} {visibleCourses === 1 ? "formation" : "formations"}
           </p>
           {selectedCategory !== "all" && (
             <button
               type="button"
               onClick={() => setSelectedCategory("all")}
-              className="text-sm font-semibold text-primary hover:text-secondary"
+              className="text-xs font-semibold text-primary hover:text-secondary"
             >
               Voir tous les domaines
             </button>
           )}
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-2">
+        {/* Grille des catégories */}
+        <div className="grid gap-4 xl:grid-cols-2">
           {filteredFormations.map((category) => {
             const Icon = category.icon;
             return (
               <article
                 key={category.category}
-                className="overflow-hidden rounded-xl border border-border bg-white shadow-card transition-shadow hover:shadow-elevated"
+                className="overflow-hidden rounded-xl border border-border bg-white"
               >
-                <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-secondary to-primary px-5 py-4 text-white sm:px-6">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/15">
-                      <Icon className="h-5 w-5 text-accent" />
+                {/* En-tête catégorie allégé */}
+                <div className="flex items-center justify-between gap-3 border-b border-border/60 px-4 py-3">
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                      <Icon className="h-4 w-4 text-primary" />
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-base font-bold text-white sm:text-lg">{category.category}</h3>
-                      <p className="text-xs text-white/75">Parcours professionnels</p>
-                    </div>
+                    <h3 className="font-display text-sm font-bold text-secondary">{category.category}</h3>
                   </div>
-                  <span className="shrink-0 rounded-full bg-accent px-2.5 py-1 text-xs font-bold text-accent-foreground">
-                      {category.courses.length}
+                  <span className="shrink-0 rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-bold text-primary">
+                    {category.courses.length}
                   </span>
                 </div>
 
-                <div className="grid gap-3 bg-muted/40 p-3 sm:grid-cols-2 sm:p-4">
+                <div className="grid gap-2 bg-muted/20 p-2.5 sm:grid-cols-2 sm:p-3">
                   {category.courses.map((course) => {
                     const hasMultipleFormats = hasFormats(course);
                     const isExpanded = Boolean(expandedCourses[course.name]);
                     return (
-                      <article key={course.name} className="rounded-lg border border-border bg-white p-4 transition-colors hover:border-primary/30">
-                        <div className="flex items-start justify-between gap-3">
-                          <h4 className="font-semibold leading-snug text-secondary">{course.name}</h4>
-                          <span className="shrink-0 text-right text-xs font-bold leading-5 text-primary sm:text-sm">
+                      <article key={course.name} className="rounded-lg border border-border/80 bg-white p-3 transition-colors hover:border-primary/30">
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="text-xs font-semibold leading-snug text-secondary">{course.name}</h4>
+                          <span className="shrink-0 text-right text-[11px] font-bold leading-4 text-primary">
                             {course.fee ?? (hasMultipleFormats ? `${course.formats.length} formules` : "")}
                           </span>
                         </div>
 
-                        <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-                          <Clock className="h-3.5 w-3.5 shrink-0 text-sky" />
+                        <div className="mt-2 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                          <Clock className="h-3 w-3 shrink-0 text-sky" />
                           <span>{course.duration ?? "Durées au choix"}</span>
                         </div>
 
                         {course.note && (
-                          <p className="mt-3 rounded-md bg-primary/5 px-2.5 py-2 text-xs leading-5 text-secondary/80">
+                          <p className="mt-2 rounded bg-primary/5 px-2 py-1.5 text-[10px] leading-4 text-secondary/80">
                             {course.note}
                           </p>
                         )}
@@ -304,18 +304,18 @@ const FormationsSection = () => {
                               type="button"
                               onClick={() => toggleCourse(course.name)}
                               aria-expanded={isExpanded}
-                              className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-primary transition hover:text-secondary"
+                              className="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-primary transition hover:text-secondary"
                             >
-                              {isExpanded ? "Masquer les formules" : "Voir les formules"}
-                              <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                              {isExpanded ? "Masquer" : "Voir les formules"}
+                              <ChevronDown className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
                             </button>
                             {isExpanded && (
-                              <div className="mt-3 space-y-2 border-t border-border pt-3">
+                              <div className="mt-2 space-y-1.5 border-t border-border/60 pt-2">
                                 {course.formats.map((format) => (
-                                  <div key={format.type} className="flex items-start justify-between gap-3 text-xs">
+                                  <div key={format.type} className="flex items-start justify-between gap-2 text-[10px]">
                                     <div>
                                       <p className="font-semibold text-secondary">{format.type}</p>
-                                      <p className="mt-0.5 text-muted-foreground">{format.duration}</p>
+                                      <p className="text-muted-foreground">{format.duration}</p>
                                     </div>
                                     <span className="shrink-0 font-bold text-primary">{format.fee}</span>
                                   </div>
@@ -328,40 +328,38 @@ const FormationsSection = () => {
                     );
                   })}
                 </div>
-                </article>
+              </article>
             );
           })}
         </div>
 
         {filteredFormations.length === 0 && (
-          <div className="rounded-xl border border-border bg-white px-6 py-12 text-center shadow-sm">
-            <Search className="mx-auto mb-4 h-10 w-10 text-muted-foreground/50" />
-            <h3 className="font-semibold text-secondary">Aucune formation trouvée</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Essayez un autre mot-clé ou choisissez un autre domaine.</p>
+          <div className="rounded-xl border border-border bg-white px-6 py-10 text-center">
+            <Search className="mx-auto mb-3 h-8 w-8 text-muted-foreground/40" />
+            <h3 className="text-sm font-semibold text-secondary">Aucune formation trouvée</h3>
+            <p className="mt-1 text-xs text-muted-foreground">Essayez un autre mot-clé ou domaine.</p>
             <button
               type="button"
-              onClick={() => {
-                setSearchTerm("");
-                setSelectedCategory("all");
-              }}
-              className="mt-4 text-sm font-semibold text-primary hover:text-secondary"
+              onClick={() => { setSearchTerm(""); setSelectedCategory("all"); }}
+              className="mt-3 text-xs font-semibold text-primary hover:text-secondary"
             >
               Réinitialiser les filtres
             </button>
           </div>
         )}
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-xl bg-gradient-to-br from-secondary to-primary p-6 text-center text-white shadow-elevated sm:flex-row sm:px-8 sm:text-left">
+        {/* CTA compact */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 rounded-xl bg-gradient-to-br from-secondary to-primary p-5 text-center text-white sm:flex-row sm:px-6 sm:text-left">
           <div>
-            <h3 className="font-display text-lg font-bold sm:text-xl">Besoin d’aide pour choisir ?</h3>
-            <p className="mt-1 text-sm text-white/80">Notre équipe vous accompagne dans votre orientation.</p>
+            <h3 className="font-display text-base font-bold">Besoin d'aide pour choisir ?</h3>
+            <p className="mt-0.5 text-xs text-white/80">Notre équipe vous accompagne dans votre orientation.</p>
           </div>
           <Link
             to="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-secondary transition hover:bg-accent"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-secondary transition hover:bg-accent"
           >
             Contacter le CFPM
-            <ArrowUpRight className="h-4 w-4" />
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </div>

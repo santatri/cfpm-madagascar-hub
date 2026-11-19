@@ -1,130 +1,191 @@
 import { useState, useEffect } from "react";
-import { GraduationCap, Users, MapPin, Award, ChevronDown } from "lucide-react";
+import {
+  GraduationCap,
+  Users,
+  MapPin,
+  Award,
+  ArrowRight,
+  Building2,
+  TrendingUp,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import heroImage from "@/assets/h.png";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [counters, setCounters] = useState({ students: 0, insertion: 0, centers: 0 });
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight - 100,
-      behavior: 'smooth'
-    });
-  };
+  useEffect(() => {
+    if (!isVisible) return;
+    const targets = { students: 3500, insertion: 92, centers: 22 };
+    const duration = 1800;
+    const steps = 50;
+    let step = 0;
+
+    const interval = setInterval(() => {
+      step++;
+      const progress = step / steps;
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCounters({
+        students: Math.floor(targets.students * easeOut),
+        insertion: Math.floor(targets.insertion * easeOut),
+        centers: Math.floor(targets.centers * easeOut),
+      });
+      if (step >= steps) clearInterval(interval);
+    }, duration / steps);
+
+    return () => clearInterval(interval);
+  }, [isVisible]);
+
+  const stats = [
+    { value: `${counters.students.toLocaleString("fr-FR")}+`, label: "Étudiants", icon: Users },
+    { value: `${counters.insertion}%`, label: "Insertion", icon: TrendingUp },
+    { value: counters.centers, label: "Centres", icon: Building2 },
+  ];
+
+  const features = [
+    { icon: MapPin, text: "22 centres à Madagascar" },
+    { icon: Award, text: "Diplômes reconnus par l'État" },
+    { icon: Users, text: "Formateurs expérimentés" },
+  ];
 
   return (
-    <section id="accueil" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-16">
-      {/* Image de fond avec overlay amélioré */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="CFPM Madagascar - Centre de formation professionnelle"
-          className="w-full h-full object-cover"
-        />
-        {/* Overlay dégradé plus sophistiqué */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#001A66]/90 via-[#001A66]/65 to-[#0044E5]/55" />
-      </div>
+    <section
+      id="accueil"
+      className="relative min-h-[100svh] flex items-center overflow-hidden bg-white pt-16"
+    >
+      {/* Pattern de points subtil */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #001A66 1px, transparent 0)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      {/* Pattern de points pour texture (optionnel) */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
-      </div>
+      {/* Formes décoratives douces */}
+      <div className="absolute top-20 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Contenu principal avec animation */}
-      <div className={`relative z-20 max-w-5xl mx-auto px-5 sm:px-6 text-center py-12 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}>
-        {/* Badge avec animation */}
-        <div className="inline-flex items-center gap-2 bg-secondary/20 backdrop-blur-sm border border-secondary/30 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 animate-fade-in-up">
-          <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-          <span className="text-xs sm:text-sm font-medium text-white">
-            Centre de Formation Professionnelle Moderne
-          </span>
-        </div>
-
-        {/* Titre principal */}
-        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 animate-fade-in-up leading-tight">
-          CFPM <span className="text-accent">de Madagascar</span>
-        </h1>
-
-        {/* Sous-titre */}
-        <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-6 sm:mb-8 font-body leading-relaxed">
-          Formez-vous aux métiers d'avenir dans nos centres répartis à travers tout Madagascar.
-          Excellence et professionnalisme au service de votre avenir.
-        </p>
-
-        {/* Statistiques mises à jour */}
-        <div className="flex flex-wrap justify-center gap-6 sm:gap-12 mb-8 sm:mb-10">
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-accent">3 500+</div>
-            <div className="text-xs sm:text-sm text-white/60">Étudiants formés</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-accent">92%</div>
-            <div className="text-xs sm:text-sm text-white/60">Taux d'insertion</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl font-bold text-accent">22</div>
-            <div className="text-xs sm:text-sm text-white/60">Centres à Madagascar</div>
-          </div>
-        </div>
-
-        {/* Boutons d'action */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-          <Link
-            to="/formations"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-lg transition-all hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base pointer-events-auto"
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 py-12 lg:py-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* ===== COLONNE GAUCHE : Texte ===== */}
+          <div
+            className={`transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
           >
-            <GraduationCap className="w-4 h-4 transition-transform group-hover:rotate-12" />
-            Nos Formations
-          </Link>
-          <Link
-            to="/contact"
-            className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 font-semibold px-8 py-3 rounded-lg transition-all hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base pointer-events-auto"
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-primary/5 border border-primary/15 rounded-full px-3.5 py-1.5 mb-5">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[11px] sm:text-xs font-medium text-secondary tracking-wide">
+                Centre de Formation Professionnelle Moderne
+              </span>
+            </div>
+
+            {/* Titre */}
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-secondary leading-[1.1] tracking-tight mb-4">
+              Formez-vous aux{" "}
+              <span className="text-primary">métiers d'avenir</span>{" "}
+              à Madagascar
+            </h1>
+
+            {/* Sous-titre */}
+            <p className="text-sm sm:text-base text-muted-foreground max-w-lg mb-6 leading-relaxed">
+              Le CFPM accompagne votre parcours professionnel avec des formations pratiques,
+              des équipements modernes et un réseau de 22 centres dans tout le pays.
+            </p>
+
+            {/* Boutons */}
+            <div className="flex flex-col sm:flex-row items-start gap-3 mb-8">
+              <Link
+                to="/formations"
+                className="group inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold px-6 py-3 rounded-lg transition-all duration-200 shadow-md shadow-primary/20 hover:shadow-lg text-sm"
+              >
+                <GraduationCap className="w-4 h-4" />
+                Découvrir nos formations
+                <ArrowRight className="w-4 h-4 opacity-0 -ml-1 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-secondary/5 border border-border text-secondary hover:bg-secondary/10 font-semibold px-6 py-3 rounded-lg transition-all duration-200 text-sm"
+              >
+                <Users className="w-4 h-4" />
+                Nous contacter
+              </Link>
+            </div>
+
+            {/* Features inline */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              {features.map((feature) => {
+                const Icon = feature.icon;
+                return (
+                  <span key={feature.text} className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                    <Icon className="w-3.5 h-3.5 text-primary" />
+                    {feature.text}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ===== COLONNE DROITE : Visuel ===== */}
+          <div
+            className={`relative transition-all duration-700 delay-200 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
           >
-            <Users className="w-4 h-4 transition-transform group-hover:scale-110" />
-            Nous Contacter
-          </Link>
+            <div className="relative">
+              {/* Bordure décorative derrière */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl blur-sm" />
+
+              <div className="relative overflow-hidden rounded-2xl shadow-xl border border-border/40">
+                <img
+                  src={heroImage}
+                  alt="Étudiants en formation au CFPM Madagascar"
+                  className="w-full h-64 sm:h-80 lg:h-[420px] object-cover"
+                />
+                {/* Overlay très subtil */}
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent" />
+              </div>
+
+              {/* Carte statistiques flottante */}
+              <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-white rounded-xl shadow-xl border border-border/40 p-3 sm:p-4 min-w-[200px]">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+                    <TrendingUp className="w-3.5 h-3.5 text-primary" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    En chiffres
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {stats.map((stat) => (
+                    <div key={stat.label} className="text-center">
+                      <div className="text-sm font-bold text-secondary leading-none">{stat.value}</div>
+                      <div className="text-[9px] text-muted-foreground mt-0.5">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Badge certification flottant */}
+              <div className="absolute -top-3 -right-3 sm:-right-4 bg-primary text-white rounded-lg px-3 py-1.5 shadow-lg">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span className="text-[10px] font-bold">Reconnu par l'État</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
-            <span>22 centres à Madagascar</span>
-          </div>
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <Award className="w-4 h-4 text-accent flex-shrink-0" />
-            <span>Diplômes reconnus par l'État</span>
-          </div>
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <Users className="w-4 h-4 text-accent flex-shrink-0" />
-            <span>Formateurs expérimentés</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Flèche de scroll vers le bas */}
-      <button
-        onClick={scrollToContent}
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 text-white/50 hover:text-white transition-colors animate-bounce pointer-events-auto"
-        aria-label="Défiler vers le bas"
-      >
-        <ChevronDown size={32} />
-      </button>
-
-      {/* Effet de vague en bas (optionnel) */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-auto fill-white/5">
-          <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
       </div>
     </section>
   );
